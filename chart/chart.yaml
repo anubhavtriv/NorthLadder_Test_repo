@@ -1,4 +1,6 @@
 apiVersion: v2
-name: your-app-chart
-description: A Helm chart for your-app
-version: 0.1.0
+name: nl-node-test
+description: Helm Chart
+type: application
+version: "0.1.0"
+appVersion: "1.0.0"
