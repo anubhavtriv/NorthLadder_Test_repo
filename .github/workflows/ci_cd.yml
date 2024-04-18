@@ -39,4 +39,4 @@ jobs:
 
     - name: Deploy Application
       if: ${{ env.DEPLOYED_FROM != 'test' }}
-      run: |
+      run: helm upgrade --install my-pod-release ./
