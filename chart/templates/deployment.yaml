@@ -1,26 +1,27 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: node-app
+  name: {{ .Release.Name }}-node
+  labels:
+    app: {{ .Values.name }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: node-app
+      app: {{ .Values.name }}
   template:
     metadata:
       labels:
-        app: node-app
+        app: {{ .Values.name }}
     spec:
       containers:
-      - name: node-app
-        image: node-app-image:tag
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         resources:
           limits:
-            memory: 500Mi
-            cpu: 500m
+            memory: {{ .Values.limit.memory }}
+            cpu: {{ .Values.limit.cpu }}
           requests:
-            memory: 500Mi
-            cpu: 500m
-        securityContext:
-          runAsUser: 1000  # assuming "app" user ID is 1000
+            memory: {{ .Values.requests.memory }}
+            cpu: {{ .Values.requests.cpu }}

@@ -6,19 +6,15 @@ name: Node Deployment CI/CD
 on:
   push:
     branches:
-      - master
       - test
-    paths-ignore:
-      - 'README.md'
   pull_request:
     branches:
       - master
-      - test
 
 jobs:
   build_and_deploy:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     env:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
@@ -43,4 +39,4 @@ jobs:
 
     - name: Deploy Application
       if: ${{ env.DEPLOYED_FROM != 'test' }}
-      run: |
+      run: helm upgrade --install my-pod-release ./chart/

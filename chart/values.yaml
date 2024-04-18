@@ -1,0 +1,29 @@
+replicaCount: 1
+
+image:
+  repository: johnwicke007/northladder_node_test
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+service:
+  name: node-service
+  type: ClusterIP
+  port: 3000
+  targetPort: 3000
+  path: /
+
+limit:
+  memory: 500Mi
+  cpu: 500m
+
+requests:
+  memory: 500Mi
+  cpu: 500m
+
+ingress:
+  path: /
+  pathType: Prefix
+  port: 3000
+  host: localhost.info.local
+
+name: node-app
