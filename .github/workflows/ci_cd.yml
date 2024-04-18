@@ -14,7 +14,7 @@ on:
 jobs:
   build_and_deploy:
 
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
 
     env:
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
