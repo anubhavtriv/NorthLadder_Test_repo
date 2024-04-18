@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: node-app
-        image: node-app-image:tag
+        image: johnwicke007/northladder_node_test:latest
         resources:
           limits:
             memory: 500Mi

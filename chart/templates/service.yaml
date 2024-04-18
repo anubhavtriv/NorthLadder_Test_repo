@@ -3,9 +3,12 @@ kind: Service
 metadata:
   name: node-app-service
 spec:
+  selector:
+    app: node-app
   ports:
   - port: 3000
     targetPort: 3000 # Change this to your app's port
+  type: LoadBalancer # or NodePort if LoadBalancer is not available
   livenessProbe:
     httpGet:
       path: /
@@ -14,7 +17,4 @@ spec:
     httpGet:
       path: /
       port: 3000
-  selector:
-    app: node-app
-  type: LoadBalancer # or NodePort if LoadBalancer is not available
   
